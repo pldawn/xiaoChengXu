@@ -1,0 +1,55 @@
+.drawer_box { 
+  width: 85%;  
+  overflow: hidden;  
+  position: fixed;  
+  top: 40%;  
+  left: 0;  
+  z-index: 1001;  
+  background: #fff;  
+  margin: -150px 50rpx 0 50rpx;  
+  border-radius: 3px;  
+} 
+   
+.drawer_title { 
+  padding:15px;  
+  font: 40px;  
+  text-align: center;  
+}
+
+.drawer_content { 
+  height: 100px;  
+  overflow-y: scroll; 
+} 
+   
+.btn_ok { 
+  padding: 10px;  
+  font: 20px;  
+  text-align: center;  
+  border-top: 1px solid #E8E8EA;  
+  color: #000000;
+} 
+
+.title { 
+    height: 30px;
+    line-height: 30px;
+    width: 160rpx;
+    text-align: center;
+    display: inline-block;
+    font: 20px;
+    -webkit-box-flex:0;
+}
+   
+.input { 
+    border: 2rpx solid #ccc; 
+    padding-left: 10rpx; 
+    margin-right: 50rpx;
+    height: 30px;  
+    line-height: 30px;
+    -webkit-box-flex:1;
+}
+
+.grid {
+  display: -webkit-box;
+  display: box;
+  padding-top:8px;
+}
