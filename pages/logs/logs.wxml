@@ -1,0 +1,35 @@
+<view class="container">
+  <view class="drawer_box">  
+    <view class="grid"> 
+      <input class="input" placeholder="输入查询内容" bindblur="bindBlur"></input> 
+      <button class="title" bindtap="bindTap">查询</button>      
+    </view> 
+  </view>
+
+  <view class="table">
+    <view class="tr bg-head">
+      <view class="th">姓名</view>
+      <view class="th">手机</view>
+      <view class="th ">城市</view>
+      <view class="th ">近况</view>
+    </view>
+    <block wx:for="{{addressBook}}" wx:key="{{name}}">
+      <block wx:if="{{item.name == searchInfo || item.mobile == searchInfo || item.city == searchInfo || item.status == searchInfo}}">
+        <view class="tr">
+          <view id="{{index}}" data-key="name" class="td-name">{{item.name}}</view>
+          <view id="{{index}}" data-key="mobile" class="td-mobile">{{item.mobile}}</view>
+          <view id="{{index}}" data-key="city" class="td-city">{{item.city}}</view>
+          <view id="{{index}}" data-key="status" class="td-status">{{item.status}}</view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="tr-none">
+          <view id="{{index}}" data-key="name" class="td-name">{{item.name}}</view>
+          <view id="{{index}}" data-key="mobile" class="td-mobile">{{item.mobile}}</view>
+          <view id="{{index}}" data-key="city" class="td-city">{{item.city}}</view>
+          <view id="{{index}}" data-key="status" class="td-status">{{item.status}}</view>
+        </view>
+      </block>
+    </block>
+  </view>
+</view>
