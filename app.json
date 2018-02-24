@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/modify/modify"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "243班通讯录",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar":{
+    "color":"#B0C4DE",
+    "selectedColor":"#708090",
+    "backgroundColor":"#DCDCDC",
+    "list":[{
+      "pagePath":"pages/index/index",
+      "text":"通讯录"
+    },{
+      "pagePath": "pages/logs/logs",
+      "text": "查询"
+    }
+    ]
+  }
+}
