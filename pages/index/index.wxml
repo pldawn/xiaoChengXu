@@ -1,0 +1,33 @@
+<view class="container">
+  <view class="table">
+    <view class="tr bg-head">
+      <view class="th">姓名</view>
+      <view class="th">手机</view>
+      <view class="th ">城市</view>
+      <view class="th ">近况</view>
+    </view>
+    <block wx:for="{{addressBook}}" wx:key="{{name}}">
+      <view class="tr bg-content" wx:if="{{index % 2 == 0}}" bindlongpress="bindLongPress">
+        <view id="{{index}}" data-key="name" class="td-name">{{item.name}}</view>
+        <view id="{{index}}" data-key="mobile" class="td-mobile">{{item.mobile}}</view>
+        <view id="{{index}}" data-key="city" class="td-city">{{item.city}}</view>
+        <view id="{{index}}" data-key="status" class="td-status">{{item.status}}</view>
+      </view>
+      <view class="tr" wx:else bindlongpress="bindLongPress">
+        <view id="{{index}}" data-key="name" class="td-name">{{item.name}}</view>
+        <view id="{{index}}" data-key="mobile" class="td-mobile">{{item.mobile}}</view>
+        <view id="{{index}}"data-key="city" class="td-city">{{item.city}}</view>
+        <view id="{{index}}" data-key="status" class="td-status">{{item.status}}</view>
+      </view>
+    </block>
+  </view>
+  <form class="table" bindsubmit="bindSubmit">
+    <view class="tr">
+      <input name="name" placeholder="姓名" style="font-size: 85%"/>
+      <input name="mobile" placeholder="手机" style="font-size: 85%"/>
+      <input name="city" placeholder="城市" style="font-size: 85%"/>
+      <input name="status" placeholder="近况" style="font-size: 85%"/>
+    </view>
+      <button formType="submit">增加信息</button>
+  </form>
+</view>
