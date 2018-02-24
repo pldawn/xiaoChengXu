@@ -2,25 +2,32 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/modify/modify"
+    "pages/modify/modify",
+    "pages/user/info"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#4483C2",
     "navigationBarTitleText": "243班通讯录",
     "navigationBarTextStyle": "black"
   },
-  "tabBar":{
-    "color":"#B0C4DE",
-    "selectedColor":"#708090",
-    "backgroundColor":"#DCDCDC",
-    "list":[{
-      "pagePath":"pages/index/index",
-      "text":"通讯录"
-    },{
-      "pagePath": "pages/logs/logs",
-      "text": "查询"
-    }
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#4483C2",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "通讯录",
+        "iconPath": "assets/icon/menu.png",
+        "selectedIconPath": "assets/icon/menu_selected.png"
+      },
+      {
+        "pagePath": "pages/user/info",
+        "text": "我的信息",
+        "iconPath": "assets/icon/user.png",
+        "selectedIconPath": "assets/icon/user_selected.png"
+      }
     ]
   }
 }
