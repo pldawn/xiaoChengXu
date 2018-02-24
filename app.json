@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/modify/modify",
-    "pages/user/info"
+    "pages/user/info",
+    "pages/contact/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,7 +18,7 @@
     "backgroundColor": "#fff",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/contact/index",
         "text": "通讯录",
         "iconPath": "assets/icon/menu.png",
         "selectedIconPath": "assets/icon/menu_selected.png"

@@ -1,0 +1,3 @@
+/* pages/contact/index.wxss */
+.weui-media-box__info__meta {color:#000}
+.weui-media-box__title_in-tex{font-size:11px;font-weight: bolder;}
