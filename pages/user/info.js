@@ -5,7 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    name: "未登录",
+    province: "",
+    city: "",
+    avatar: "/assets/img/avatar.png",
+    region: ""
   },
 
   /**
@@ -21,14 +25,54 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    let _self = this;
+    wx.getSetting({
+      success(authSetting) {
+        if (!authSetting.authSetting['scope.userInfo']) {
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success(errMsg) {
+              console.log(errMsg);
+              _self.setUserInfo();
+            }
+          })
+        }
+      }
+    })
   },
-
+  setUserInfo: function () {
+    let _self = this;
+    wx.getUserInfo({
+      lang: "zh_CN",
+      success(res) {
+        // console.log(res);
+        _self.setData({
+          name: res.userInfo.nickName,
+          region: [res.userInfo.province, res.userInfo.city],
+          avatar: res.userInfo.avatarUrl,
+          province: res.userInfo.province,
+          city: res.userInfo.city
+        })
+      }
+    })
+  },
+  bindRegionChange: function (e) {
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      region: e.detail.value
+    })
+  },
+  submitHandle: function(e) {
+    console.log(e.detail.value);
+    // wx.request({
+    //   url: '/adpidsad',
+    // })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setUserInfo();
   },
 
   /**

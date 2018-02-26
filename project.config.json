@@ -26,12 +26,18 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "contact",
-					"pathName": "pages/contact/index"
+					"pathName": "pages/contact/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "user",
+					"pathName": "pages/user/info"
 				}
 			]
 		}
