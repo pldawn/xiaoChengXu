@@ -14,7 +14,7 @@ Page({
   onLoad: function (options) {
     let _self = this;
     wx.request({
-      url: 'http://localhost:3000/address/list',
+      url: 'https://api.haomantech.cn/address/list',
       method: 'GET',
       success: function (res) {
         _self.setData({

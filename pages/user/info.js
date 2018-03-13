@@ -79,7 +79,7 @@ Page({
   },
   submitHandle: function (e) {
     wx.request({
-      url: 'http://localhost:3000/address/myself',
+      url: 'https://api.haomantech.cn/address/myself',
       method: 'POST',
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
