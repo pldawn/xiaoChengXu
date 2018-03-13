@@ -5,11 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    name: "未登录",
-    province: "",
-    city: "",
     avatar: "/assets/img/avatar.png",
-    region: ""
+    truename: '',
+    mobile: '',
+    city: '',
+    recent: '',
+    wx_rawData: ''
   },
 
   /**
@@ -45,13 +46,12 @@ Page({
     wx.getUserInfo({
       lang: "zh_CN",
       success(res) {
-        // console.log(res);
+        console.log(res);
         _self.setData({
-          name: res.userInfo.nickName,
-          region: [res.userInfo.province, res.userInfo.city],
+          truename: res.userInfo.nickName,
+          city: [res.userInfo.province, res.userInfo.city],
           avatar: res.userInfo.avatarUrl,
-          province: res.userInfo.province,
-          city: res.userInfo.city
+          wx_rawData: res
         })
       }
     })
@@ -59,14 +59,42 @@ Page({
   bindRegionChange: function (e) {
     // console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      region: e.detail.value
+      city: e.detail.value
     })
   },
-  submitHandle: function(e) {
-    console.log(e.detail.value);
-    // wx.request({
-    //   url: '/adpidsad',
-    // })
+  bindTruenameChange: function(e) {
+    this.setData({
+      truename: e.detail.value
+    })
+  },
+  bindMobileChange: function (e) {
+    this.setData({
+      mobile: e.detail.value
+    })
+  },
+  bindRecentChange: function(e) {
+    this.setData({
+      recent: e.detail.value
+    })
+  },
+  submitHandle: function (e) {
+    wx.request({
+      url: 'http://localhost:3000/address/myself',
+      method: 'POST',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },  
+      data: {
+        truename:this.data.truename,
+        mobile: this.data.mobile,
+        city: this.data.city,
+        recent: this.data.recent,
+        wx_rawData: JSON.stringify(this.data.wx_rawData)
+      },
+      success: function(res){
+        console.log(res.data);
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面显示
@@ -79,34 +107,34 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

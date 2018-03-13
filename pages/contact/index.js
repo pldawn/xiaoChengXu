@@ -5,18 +5,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    addressBook: [
-      { name: "张文涛", mobile: "13520946941", status: "Boss直聘", city: "北京", update_time:"2018.1.2"},
-      { name: "彭琳", mobile: "17301860049", status: "上海财经大学", city: "上海", update_time: "2018.1.2"},
-      { name: "李卓航", mobile: "13632412301", status: "中山大学附属第二医院泌尿科", city: "广州", update_time: "2018.1.2"}
-    ]
+    addressBook: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    let _self = this;
+    wx.request({
+      url: 'http://localhost:3000/address/list',
+      method: 'GET',
+      success: function (res) {
+        _self.setData({
+          addressBook: res.data
+        })
+      }
+    })
   },
 
   /**

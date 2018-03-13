@@ -11,7 +11,7 @@
             <view class="weui-label">姓名</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input"  name="truename" placeholder="你的名字" />
+            <input class="weui-input"  name="truename" value="{{truename}}" placeholder="你的名字" bindchange="bindTruenameChange"/>
           </view>
         </view>
         <view class="weui-cell weui-cell_input">
@@ -19,7 +19,7 @@
             <view class="weui-label">联系方式</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" name="mobile" placeholder="手机号码或者微信号等" />
+            <input class="weui-input" name="mobile" value="{{mobile}}" placeholder="手机号码或者微信号等" bindchange="bindMobileChange" />
           </view>
         </view>
         <view class="weui-cell weui-cell_input">
@@ -27,8 +27,8 @@
             <view class="weui-label">城市</view>
           </view>
           <view class="weui-cell__bd">
-            <picker mode="region" name="city" value="{{region}}" bindchange="bindRegionChange">
-              <view class="weui-input">{{region[0]}}{{region[1]}}{{region[2]}}</view>
+            <picker mode="region" name="city" value="{{city}}" bindchange="bindRegionChange">
+              <view class="weui-input">{{city}}</view>
             </picker>
           </view>
         </view>
@@ -37,7 +37,7 @@
             <view class="weui-label">近况</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" name="recent" placeholder="哪里高就" />
+            <input class="weui-input" name="recent" value="{{recent}}" bindchange="bindRecentChange" placeholder="哪里高就" />
           </view>
         </view>
       </view>
