@@ -1,3 +1,0 @@
-/* pages/user/info.wxss */
-.header {height: 80px;text-align: center;padding:10px;}
-.header image {width:80px; height: 80px; border-radius: 80px;box-sizing: border-box;}

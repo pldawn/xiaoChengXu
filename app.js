@@ -1,31 +1,33 @@
 App({
-  onLaunch: function () {
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
+  globalData: {
+    personalData: {
+      openId: null
+    },
+    selectedTable: null,
+    tableName: null,
+    modifyId: null,
+    modifyKey: null
+  },
 
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          wx.getUserInfo({
-            success: res => {
-              this.globalData.userInfo = res.userInfo
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
+  onLaunch: function() {
+    wx.login({
+      success: function(res) {
+        if (res.code) {
+          wx.request({
+            url: 'https://api.haomantech.cn/wx/onLogin',
+            data: {
+              code: res.code
+            },
+            method: 'GET',
+            success: function(res) {
+              this.globalData.personalData.openId = res.data.openId
+            },
+            fail: function(res) {
+              console.log(res)
             }
           })
         }
       }
     })
-  },
-  globalData: {
-    userInfo: null,
-    pressId: null,
-    pressKey: null,
-    newContent: null,
-    addressBook: null
   }
 })

@@ -2,8 +2,8 @@
   <view class="drawer_title">点击提交后生效</view> 
   <view class="drawer_content"> 
     <view class="grid"> 
-      <label class="title">{{pressKey}}</label> 
-      <input class="input" placeholder="输入修改内容" bindblur="bindBlur"></input> 
+      <label class="title">{{modifyKey}}</label> 
+      <input class="input" placeholder="输入修改内容" bindinput="bindInput"></input> 
     </view> 
   </view> 
   <view class="btn_ok" bindtap="bindTapConfirm">提交</view>
