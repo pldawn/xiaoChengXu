@@ -2,17 +2,17 @@ const app = getApp()
 
 Page({
   data: {
-    seletedTable: null,
+    selectedTable: null,
     searchInfo: null
   },
 
   onLoad: function() {
     this.setData({
-      seletedTable: app.globalData.seletedTable
+      selectedTable: app.globalData.selectedTable
     })
   },
 
-  bindInput: function(e) {
+  bindInputConfirm: function(e) {
     this.setData({
       searchInfo: e.detail.value
     })

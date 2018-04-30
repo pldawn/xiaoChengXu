@@ -3,38 +3,51 @@ const app = getApp()
 Page({
   data:{
     // 此用户的openId可以获取的通讯录列表
-    tablesList: null
+    tablesList: null,
+    openId: null
+  },
+
+
+  data:{
+    // 此用户的openId可以获取的通讯录列表
+    tablesList: null,
+    openId: null
   },
 
   onLoad: function() {
+    let that = this
     // 向服务器请求通讯录列表
-    wx.request({
-      url: 'https://api.haomantech.cn/address/tables',
-      data: {
-        openid: app.globalData.persinalData.openId
-      },
-      method: 'GET',
-      success: function(res){
-        console.log(res.data)
-        this.setData({
-          tablesList: res.data
-        })
-      }
-    })
+    setTimeout(function() {
+      wx.request({
+        url: 'https://api.haomantech.cn/address/tables',
+        data: {
+          openid: app.globalData.openId
+        },
+        method: 'GET',
+        success: function (res) {
+          console.log(res.data)
+          that.setData({
+            tablesList: res.data,
+            openId: app.globalData.openId
+          })
+        }
+      })
+    }, 2000)
   },
 
   onPullDownRefresh: function(e) {
+    let that = this
     wx.showNavigationBarLoading()
     // 向服务器请求最新的通讯录列表
     wx.request({
       url: 'https://api.haomantech.cn/address/tables',
       data: {
-        openid: app.globalData.persinalData.openId
+        openid: app.globalData.openId
       },
       method: 'GET',
       success: function (res) {
         console.log(res.data)
-        this.setData({
+        that.setData({
           tablesList: res.data
         })
       },
@@ -56,28 +69,40 @@ Page({
     })
   },
 
-  bindCreateSubmit: function(e) {
-    wx.showNavigationBarLoading()
-    // 创建新的通讯录
-    wx.request({
-      url: 'https://api.haomantech.cn/address/tables',
-      data: {
-        tablename: e.detail.value.tableName,
-        openid: this.data.persinalData.openId
-      },
-      method: 'POST',
-      success: function(res) {
-        console.log(res)
-        this.setData({
-          tableList: res.data
-        })
-      },
-      fail: function(res) {
-        console.log(res)
-      },
-      complete() {
-        wx.hideNavigationBarLoading()
+  checkTableNameUnique: function(tablename) {
+    for (var na=0;na<this.data.tablesList.length;na++) {
+      if (this.data.tablesList[na].tablename == tablename) {
+        return false
       }
-    })
+    }
+    return true
+  },
+
+  bindCreateSubmit: function(e) {
+    let that = this
+    // 创建新的通讯录
+    if (e.detail.value.tableName && this.checkTableNameUnique(e.detail.value.tableName)){
+      wx.showNavigationBarLoading()
+      wx.request({
+        url: 'https://api.haomantech.cn/address/tables',
+        data: {
+          tablename: e.detail.value.tableName,
+          openid: that.data.openId
+        },
+        method: 'POST',
+        success: function(res) {
+          console.log(res)
+          that.setData({
+            tablesList: res.data
+          })
+        },
+        fail: function(res) {
+          console.log(res)
+        },
+        complete() {
+          wx.hideNavigationBarLoading()
+        }
+      })
+    }
   }
 })

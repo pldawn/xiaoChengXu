@@ -2,7 +2,7 @@
   <view class="drawer_title">点击提交后生效</view> 
   <view class="drawer_content"> 
     <view class="grid"> 
-      <label class="title">{{modifyKey}}</label> 
+      <label class="title">{{modifyKeyCN}}</label> 
       <input class="input" placeholder="输入修改内容" bindinput="bindInput"></input> 
     </view> 
   </view> 

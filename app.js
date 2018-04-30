@@ -1,8 +1,6 @@
 App({
   globalData: {
-    personalData: {
-      openId: null
-    },
+    openId: null,
     selectedTable: null,
     tableName: null,
     modifyId: null,
@@ -10,6 +8,7 @@ App({
   },
 
   onLaunch: function() {
+    let that = this
     wx.login({
       success: function(res) {
         if (res.code) {
@@ -20,7 +19,7 @@ App({
             },
             method: 'GET',
             success: function(res) {
-              this.globalData.personalData.openId = res.data.openId
+              that.globalData.openId = res.data.openid
             },
             fail: function(res) {
               console.log(res)

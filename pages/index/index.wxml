@@ -1,19 +1,21 @@
 <view class="container">
-  <view class=''>选择通讯录</view>
-  <view class="table">
-    <block class='' wx:for="{{tableList}}" wx:key="{{tablename}}">
-      <view class="tr bg-content" wx:if="{{index % 2 == 0}}" bindtap="bindSelectTap">
-          <view id="{{item.primary}}" data-key="{{item.tablename}}" class="td-name">{{item.tablename}}</view>
+  <view class='header'>选择通讯录</view>
+  <view class="outertable">
+    <view class="table">
+      <block wx:for="{{tablesList}}" wx:key="{{tablename}}">
+        <view wx:if="{{index % 2 == 0}}" bindtap="bindSelectTap">
+          <button class="tr bg-content" id="{{item.xid}}" data-key="{{item.tablename}}">{{item.tablename}}</button>
         </view>
-        <view class="tr" wx:else bindtap="bindSelectTap">
-          <view id="{{item.primary}}" data-key="{{item.tablename}}" class="td-name">{{item.tablename}}</view>
+        <view wx:else bindtap="bindSelectTap">
+          <button class="tr" id="{{item.xid}}" data-key="{{item.tablename}}">{{item.tablename}}</button>
         </view>
-    </block>
-  </view>
-  <form class="table" bindsubmit="bindCreateSubmit">
-    <view class="tr">
-      <input name="tableName" placeholder="输入通讯录名称" style="font-size: 95%"/>
+      </block>
     </view>
-      <button formType="submit">添加通讯录</button>
+  </view>
+  <form class="footer" bindsubmit="bindCreateSubmit">
+    <view class="tr">
+      <input class='input' name="tableName" placeholder="输入新的通讯录名称" style="font-size: 95%"/>
+    </view>
+      <button formType="submit">添加新的通讯录</button>
   </form>
 </view>

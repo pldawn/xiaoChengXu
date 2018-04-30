@@ -9,6 +9,7 @@ Page({
   },
 
   onLoad: function(opts) {
+    let that = this
     // 通过分享链接进入此界面
     if (opts.tableName) {
       //  将此分享的表插入用户可获得通讯录列表中
@@ -21,7 +22,7 @@ Page({
         method: 'POST',
         success: function (res) {
           console.log(res)
-          this.setData({
+          that.setData({
             tableList: res.data
           })
         },
@@ -30,13 +31,13 @@ Page({
         }
       })
 
-      this.setData({
+      that.setData({
         tableName: opts.tableName
       })
     }
     else {
       // 从index页面跳转至此页面
-      this.setData({
+      that.setData({
         tableName: app.globalData.tableName
       })
     }
@@ -53,18 +54,21 @@ Page({
   },
 
   onShow: function() {
+    let that = this
+
     wx.showNavigationBarLoading()
     // 根据通讯录名称获取详细信息
     wx.request({
       url: 'https://api.haomantech.cn/address/list',
       data: {
-        tablename: this.data.tableName
+        tablename: that.data.tableName
       },
       method: 'GET',
       success: function (res) {
-        this.setData({
+        that.setData({
           selectedTable: res.data
         })
+        app.globalData.selectedTable = res.data
       },
       fail: function (res) {
         console.log(res)
@@ -76,18 +80,21 @@ Page({
   },
 
   onPullDownRefresh: function (e) {
+    let that =this
+
     wx.showNavigationBarLoading()
     // 下拉刷新，重新获取最新通讯录详细信息
     wx.request({
       url: 'https://api.haomantech.cn/address/list',
       data: {
-        tablenamae: this.data.tableName
+        tablename: that.data.tableName
       },
       method: 'GET',
       success: function (res) {
-        this.setData({
+        that.setData({
           selectedTable: res.data
         })
+        app.globalData.selectedTable = res.data
       },
       fail: function (res) {
         console.log(res)
@@ -133,6 +140,8 @@ Page({
   },
 
   bindCreateSubmit: function(e) {
+    let that = this
+
     wx.showNavigationBarLoading()
     // 插入新的通讯录详细信息，创建信息内容
     var addInfo = [{ 
@@ -143,15 +152,17 @@ Page({
       tablename: this.data.tableName
       }]
     // 插入至指定通讯录中
-    if (addInfo[0].name && this.checkUnique(addInfo[0].name)) {
+    if (addInfo[0].name && addInfo[0].mobile && addInfo[0].city && addInfo[0].status && 
+        this.checkUnique(addInfo[0].name)) {
       wx.request({
         url: 'https://api.haomantech.cn/address/list',
         data: addInfo,
         method: 'POST',
         success: function(res) {
-          this.setData({
+          that.setData({
             selectedTable: res.data
           })
+          app.globalData.selectedTable = res.data
         },
         fail: function(res) {
           console.log(res)

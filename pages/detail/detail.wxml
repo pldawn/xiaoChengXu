@@ -1,35 +1,39 @@
 <view class="container">
-  <view class="btn_ok" bindtap="bindSearchTap">搜索</view>
-  <view class=''>{{tableName}}</view>
-  <view class="table">
-    <view class="tr bg-head">
-      <view class="th">姓名</view>
-      <view class="th">手机</view>
-      <view class="th ">城市</view>
-      <view class="th ">近况</view>
+  <view class="header" bindtap="bindSearchTap">搜索</view>
+  <view class='header2'>{{tableName}}</view>
+  <view class='outertable'>
+    <view class="table">
+      <view class="tr bg-head">
+        <view class="th">姓名</view>
+        <view class="th">手机</view>
+        <view class="th">城市</view>
+        <view class="th">近况</view>
+      </view>
+      <block wx:for="{{selectedTable}}" wx:key="{{name}}">
+        <view class="tr bg-content" wx:if="{{index % 2 == 0}}" bindlongpress="bindModifyLongPress">
+          <view id="{{item.xid}}" data-key="name" class="td-name">{{item.name}}</view>
+          <view id="{{item.xid}}" data-key="mobile" class="td-mobile">{{item.mobile}}</view>
+          <view id="{{item.xid}}" data-key="city" class="td-city">{{item.city}}</view>
+          <view id="{{item.xid}}" data-key="status" class="td-status">{{item.status}}</view>
+        </view>
+        <view class="tr" wx:else bindlongpress="bindModifyLongPress">
+          <view id="{{item.xid}}" data-key="name" class="td-name">{{item.name}}</view>
+          <view id="{{item.xid}}" data-key="mobile" class="td-mobile">{{item.mobile}}</view>
+          <view id="{{item.xid}}"data-key="city" class="td-city">{{item.city}}</view>
+          <view id="{{item.xid}}" data-key="status" class="td-status">{{item.status}}</view>
+        </view>
+      </block>
     </view>
-    <block wx:for="{{selectedTable}}" wx:key="{{name}}">
-      <view class="tr bg-content" wx:if="{{index % 2 == 0}}" bindlongpress="bindModifyLongPress">
-        <view id="{{item.primary}}" data-key="name" class="td-name">{{item.name}}</view>
-        <view id="{{item.primary}}" data-key="mobile" class="td-mobile">{{item.mobile}}</view>
-        <view id="{{item.primary}}" data-key="city" class="td-city">{{item.city}}</view>
-        <view id="{{item.primary}}" data-key="status" class="td-status">{{item.status}}</view>
-      </view>
-      <view class="tr" wx:else bindlongpress="bindLongPress">
-        <view id="{{item.primary}}" data-key="name" class="td-name">{{item.name}}</view>
-        <view id="{{item.primary}}" data-key="mobile" class="td-mobile">{{item.mobile}}</view>
-        <view id="{{item.primary}}"data-key="city" class="td-city">{{item.city}}</view>
-        <view id="{{item.primary}}" data-key="status" class="td-status">{{item.status}}</view>
-      </view>
-    </block>
   </view>
-  <form class="table" bindsubmit="bindCreateSubmit">
-    <view class="tr">
-      <input name="name" placeholder="输入姓名" style="font-size: 85%"/>
-      <input name="mobile" placeholder="输入手机" style="font-size: 85%"/>
-      <input name="city" placeholder="输入城市" style="font-size: 85%"/>
-      <input name="status" placeholder="输入近况" style="font-size: 85%"/>
-    </view>
-      <button formType="submit">增加信息</button>
-  </form>
+  <view class='footer'>
+    <form class="table" bindsubmit="bindCreateSubmit">
+      <view class="tr">
+        <input class='inputnoborder' name="name" placeholder="输入姓名"/>
+        <input class='input' name="mobile" placeholder="输入手机"/>
+        <input class='input' name="city" placeholder="输入城市"/>
+        <input class='input' name="status" placeholder="输入近况"/>
+      </view>
+        <button formType="submit">增加信息</button>
+    </form>
+  </view>
 </view>
