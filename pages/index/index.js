@@ -2,14 +2,7 @@ const app = getApp()
 
 Page({
   data:{
-    // 此用户的openId可以获取的通讯录列表
-    tablesList: null,
-    openId: null
-  },
-
-
-  data:{
-    // 此用户的openId可以获取的通讯录列表
+    // 此用户的openId可以获取的通讯录列表，包括真名（tableXid）和别名（tableName）
     tablesList: null,
     openId: null
   },
@@ -64,6 +57,7 @@ Page({
   bindSelectTap: function(e) {
     // 跳转detail页面并在跳转后请求选定通讯录的数据
     app.globalData.tableName = e.target.dataset.key
+    app.globalData.tableXid = e.target.id
     wx.navigateTo({
       url: '../detail/detail',
     })

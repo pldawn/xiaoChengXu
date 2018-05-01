@@ -3,6 +3,7 @@ App({
     openId: null,
     selectedTable: null,
     tableName: null,
+    tableXid: null,
     modifyId: null,
     modifyKey: null
   },

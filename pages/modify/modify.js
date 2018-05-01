@@ -47,7 +47,7 @@ Page({
       wx.request({
         url: 'https://api.haomantech.cn/address/list',
         data: {
-          tablename: app.globalData.tableName,
+          tablexid: app.globalData.tableXid,
           modifyid: this.data.modifyId,
           modifykey: this.data.modifyKey,
           newcontent: this.data.newContent

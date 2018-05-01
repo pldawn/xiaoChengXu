@@ -23,10 +23,10 @@
         </block>
         <block wx:else>
           <view class="tr-none">
-            <view id="{{item.xid}}" data-key="name" class="td-name">{{item.name}}</view>
-            <view id="{{item.xid}}" data-key="mobile" class="td-mobile">{{item.mobile}}</view>
-            <view id="{{item.xid}}" data-key="city" class="td-city">{{item.city}}</view>
-            <view id="{{item.xid}}" data-key="status" class="td-status">{{item.status}}</view>
+            <view id="{{item.uid}}" data-key="name" class="td-name">{{item.name}}</view>
+            <view id="{{item.uid}}" data-key="mobile" class="td-mobile">{{item.mobile}}</view>
+            <view id="{{item.uid}}" data-key="city" class="td-city">{{item.city}}</view>
+            <view id="{{item.uid}}" data-key="status" class="td-status">{{item.status}}</view>
           </view>
         </block>
       </block>

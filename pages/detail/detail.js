@@ -4,20 +4,22 @@ Page({
   data: {
     // 用户选定的通讯录详细信息
     selectedTable: null,
-    // 用户选定的通讯录名称
-    tableName: null
+    // 用户选定的通讯录的别名
+    tableName: null,
+    // 用户选定的通讯录的真名
+    tableXid: null
   },
 
   onLoad: function(opts) {
     let that = this
     // 通过分享链接进入此界面
-    if (opts.tableName) {
+    if (opts.tableName && opts.tableXid) {
       //  将此分享的表插入用户可获得通讯录列表中
       wx.request({
-        url: 'https://api.haomantech.cn/address/tables',
+        url: 'https://api.haomantech.cn/address/share',
         data: {
-          tablename: opts.tableName,
-          openid: app.globalData.persinalData.openId
+          tablexid: opts.tableXid,
+          openid: app.globalData.openId
         },
         method: 'POST',
         success: function (res) {
@@ -32,13 +34,15 @@ Page({
       })
 
       that.setData({
-        tableName: opts.tableName
+        tableName: opts.tableName,
+        tableXid: opts.tableXid
       })
     }
     else {
       // 从index页面跳转至此页面
       that.setData({
-        tableName: app.globalData.tableName
+        tableName: app.globalData.tableName,
+        tableXid: app.globalData.tableXid
       })
     }
 
@@ -61,7 +65,7 @@ Page({
     wx.request({
       url: 'https://api.haomantech.cn/address/list',
       data: {
-        tablename: that.data.tableName
+        tablexid: that.data.tableXid
       },
       method: 'GET',
       success: function (res) {
@@ -87,7 +91,7 @@ Page({
     wx.request({
       url: 'https://api.haomantech.cn/address/list',
       data: {
-        tablename: that.data.tableName
+        tablexid: that.data.tableXid
       },
       method: 'GET',
       success: function (res) {
@@ -110,7 +114,7 @@ Page({
     // 分享此通讯录时提供带参数的通讯录路径，路径中包含当前通讯录名称
     return {
       title: "有人向您分享通讯录：" + this.data.tableName,
-      path: "/pages/detail/detail?tableName=" + this.data.tableName,
+      path: "/pages/detail/detail?tableName=" + this.data.tableName + '&tableXid=' + this.data.tableXid,
       success: function (res) {
         console.log(res)
       },
@@ -149,7 +153,7 @@ Page({
       mobile: e.detail.value.mobile, 
       city: e.detail.value.city, 
       status: e.detail.value.status,
-      tablename: this.data.tableName
+      tablexid: this.data.tableXid
       }]
     // 插入至指定通讯录中
     if (addInfo[0].name && addInfo[0].mobile && addInfo[0].city && addInfo[0].status && 
