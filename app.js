@@ -5,10 +5,12 @@ App({
     tableName: null,
     tableXid: null,
     modifyId: null,
-    modifyKey: null
+    modifyKey: null,
+    apiUrl: null
   },
 
   onLaunch: function() {
+    this.globalData.apiUrl = this.loadConfig()
     let that = this
     wx.login({
       success: function(res) {
@@ -29,5 +31,10 @@ App({
         }
       }
     })
+  },
+  loadConfig: function() {
+    let config = require('./config')
+    // return config.dev.url ? config.dev.url :'http://localhost:3000'
+    return config.prod.url ? config.prod.url :'https://api.haomantech.cn'
   }
 })

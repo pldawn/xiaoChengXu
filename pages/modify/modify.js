@@ -45,7 +45,7 @@ Page({
     if (this.data.newContent) {
       wx.showNavigationBarLoading()
       wx.request({
-        url: 'https://api.haomantech.cn/address/list',
+        url: app.globalData.apiUrl + '/address/list',
         data: {
           tablexid: app.globalData.tableXid,
           modifyid: this.data.modifyId,

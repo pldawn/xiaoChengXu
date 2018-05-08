@@ -16,7 +16,7 @@ Page({
     if (opts.tableName && opts.tableXid) {
       //  将此分享的表插入用户可获得通讯录列表中
       wx.request({
-        url: 'https://api.haomantech.cn/address/share',
+        url: app.globalData.apiUrl + '/address/share',
         data: {
           tablexid: opts.tableXid,
           openid: app.globalData.openId
@@ -63,7 +63,7 @@ Page({
     wx.showNavigationBarLoading()
     // 根据通讯录名称获取详细信息
     wx.request({
-      url: 'https://api.haomantech.cn/address/list',
+      url: app.globalData.apiUrl + '/address/list',
       data: {
         tablexid: that.data.tableXid
       },
@@ -89,7 +89,7 @@ Page({
     wx.showNavigationBarLoading()
     // 下拉刷新，重新获取最新通讯录详细信息
     wx.request({
-      url: 'https://api.haomantech.cn/address/list',
+      url: app.globalData.apiUrl + '/address/list',
       data: {
         tablexid: that.data.tableXid
       },
@@ -159,7 +159,7 @@ Page({
     if (addInfo[0].name && addInfo[0].mobile && addInfo[0].city && addInfo[0].status && 
         this.checkUnique(addInfo[0].name)) {
       wx.request({
-        url: 'https://api.haomantech.cn/address/list',
+        url: app.globalData.apiUrl + '/address/list',
         data: addInfo,
         method: 'POST',
         success: function(res) {

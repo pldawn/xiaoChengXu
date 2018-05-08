@@ -12,7 +12,7 @@ Page({
     // 向服务器请求通讯录列表
     setTimeout(function() {
       wx.request({
-        url: 'https://api.haomantech.cn/address/tables',
+        url: app.globalData.apiUrl + '/address/tables',
         data: {
           openid: app.globalData.openId
         },
@@ -33,7 +33,7 @@ Page({
     wx.showNavigationBarLoading()
     // 向服务器请求最新的通讯录列表
     wx.request({
-      url: 'https://api.haomantech.cn/address/tables',
+      url: app.globalData.apiUrl + '/address/tables',
       data: {
         openid: app.globalData.openId
       },
@@ -78,7 +78,7 @@ Page({
     if (e.detail.value.tableName && this.checkTableNameUnique(e.detail.value.tableName)){
       wx.showNavigationBarLoading()
       wx.request({
-        url: 'https://api.haomantech.cn/address/tables',
+        url: app.globalData.apiUrl + '/address/tables',
         data: {
           tablename: e.detail.value.tableName,
           openid: that.data.openId
